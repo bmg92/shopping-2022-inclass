@@ -44,8 +44,20 @@ while True:
     #ASK FOR USER INPUT
     product_id = input("Please input a product identifier")
 
+    # user input validation below
+    validated = False  
+    validation_array = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20",]
+    for x in validation_array:
+        if x == product_id:
+            validated = True
+
+    if validated == False:
+        print("Hey, are you sure that product identifier is correct? Please run the program again and try again!")
+        exit()
+
     if product_id == "DONE":
         break
+    
     #LOOK UP CORRESPONDING PRODUCTS
 
     #print the product that has an id attribute equal to "9"
@@ -58,4 +70,4 @@ while True:
     print (matching_products)
     matching_product = matching_products[0]
     print(matching_product["name"], matching_product["price"])
-
+print("test")
