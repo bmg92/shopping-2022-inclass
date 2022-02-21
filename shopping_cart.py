@@ -38,7 +38,11 @@ def to_usd(my_price):
 
 
 # TODO: write some Python code here to produce the desired output
+from datetime import date
 
+from datetime import datetime
+
+print("When you have entered all desired product identifiers, enter the word 'DONE' for the receipt to be computed")
 print(products)
 while True:
     #ASK FOR USER INPUT
@@ -46,7 +50,7 @@ while True:
 
     # user input validation below
     validated = False  
-    validation_array = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20",]
+    validation_array = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "DONE"]
     for x in validation_array:
         if x == product_id:
             validated = True
@@ -60,7 +64,6 @@ while True:
     
     #LOOK UP CORRESPONDING PRODUCTS
 
-    #print the product that has an id attribute equal to "9"
     matching_products = []
     for x in products:
         if str(x["id"]) == str(product_id):
@@ -70,4 +73,13 @@ while True:
     print (matching_products)
     matching_product = matching_products[0]
     print(matching_product["name"], matching_product["price"])
-print("test")
+print("""#> ---------------------------------
+#> PUBLIX
+#> WWW.PUBLIX.COM
+#> ---------------------------------""")
+print ("#> CHECKOUT AT:", date.today(), datetime.today().strftime("%I:%M %p"))
+print("""#> ---------------------------------
+#> SELECTED PRODUCTS:""")
+ 
+for x in matching_products:
+    print ("#> ...  " + str(x["name"]) + " (" + str(to_usd(x["price"])) + ")")
