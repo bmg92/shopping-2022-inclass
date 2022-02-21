@@ -39,14 +39,13 @@ def to_usd(my_price):
 
 # TODO: write some Python code here to produce the desired output
 from datetime import date
-
 from datetime import datetime
 
 print("When you have entered all desired product identifiers, enter the word 'DONE' for the receipt to be computed")
-print(products)
+matching_products = []
 while True:
     #ASK FOR USER INPUT
-    product_id = input("Please input a product identifier")
+    product_id = input("Please input a product identifier: ")
 
     # user input validation below
     validated = False  
@@ -63,16 +62,13 @@ while True:
         break
     
     #LOOK UP CORRESPONDING PRODUCTS
-
-    matching_products = []
     for x in products:
         if str(x["id"]) == str(product_id):
             #this is a match
             matching_products.append(x)
 
-    print (matching_products)
-    matching_product = matching_products[0]
-    print(matching_product["name"], matching_product["price"])
+#RECEIPT CODE BELOW  
+subtotal = 0          
 print("""#> ---------------------------------
 #> PUBLIX
 #> WWW.PUBLIX.COM
@@ -82,4 +78,13 @@ print("""#> ---------------------------------
 #> SELECTED PRODUCTS:""")
  
 for x in matching_products:
-    print ("#> ...  " + str(x["name"]) + " (" + str(to_usd(x["price"])) + ")")
+    print ("#>  ... " + str(x["name"]) + " (" + str(to_usd(x["price"])) + ")")
+    subtotal += x["price"]
+
+print("#> ---------------------------------")
+print("#> SUBTOTAL:", to_usd(subtotal))
+print("#> TAX:", to_usd(subtotal * .0875))
+print("#> TOTAL:", to_usd(subtotal * 1.0875))
+print("""#> ---------------------------------
+#> THANKS, SEE YOU AGAIN SOON
+#> ---------------------------------""")
